@@ -26,6 +26,7 @@ pub fn run() {
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
             if let Some(window) = app.get_webview_window("main") {
                 let _ = window.set_title("Simple Podcast Studio");

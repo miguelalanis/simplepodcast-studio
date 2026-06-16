@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: Type check + Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies (ubuntu only)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Approve build scripts
+        run: pnpm approve-builds --all
+
+      - name: Type check frontend
+        run: pnpm run check
+
+      - name: Build frontend
+        run: pnpm run build
+
+      - name: Check Rust
+        run: cargo check
+        working-directory: src-tauri
+
+      - name: Check Rust formatting
+        run: cargo fmt --check
+        working-directory: src-tauri
+
+      - name: Clippy
+        run: cargo clippy -- -D warnings
+        working-directory: src-tauri
+        continue-on-error: true

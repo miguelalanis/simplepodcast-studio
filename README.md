@@ -8,11 +8,11 @@ Editor de escritorio local-first para publicar podcasts. Anti-lock-in.
 ## Stack
 
 - **Tauri 2** (Rust + WebView) para la app de escritorio.
-- **Svelte 5** (runes) + **Vite** para el frontend.
-- **shadcn-svelte** para la UI base (no incluido en este scaffold).
-- **svelte-spa-router** para el routing SPA.
-- **svelte-i18n** para mensajes (solo español completo en MVP).
-- **tailwindcss v4** (Tailwind v4 con `@tailwindcss/vite`).
+- **Svelte 5** (runes) + **Vite 6** para el frontend.
+- **shadcn-svelte** (button, input, card) para la UI base.
+- **Router hash-based** casero (reemplazo a svelte-spa-router v4, incompatible con Svelte 5 runes).
+- **i18n** wrapper minimalista (`t()` función pura, sin store).
+- **Tailwind v4** con `@tailwindcss/vite` y `@tailwindcss/typography`.
 
 ## Requisitos
 
@@ -27,6 +27,8 @@ pnpm install
 pnpm tauri dev
 ```
 
+La primera vez, `cargo check` descarga y compila las dependencias de Rust (~5-10 min).
+
 ## Build
 
 ```sh
@@ -35,27 +37,57 @@ pnpm tauri build
 
 Genera los instaladores en `src-tauri/target/release/bundle/`.
 
+## Auto-update (GitHub Releases)
+
+Los updates se sirven desde GitHub Releases vía `tauri-plugin-updater`.
+
+### Setup de signing (una sola vez)
+
+1. Generar keypair Ed25519:
+   ```sh
+   pnpm tauri signer generate -w ~/.tauri/simplepodcast-studio.key -p ""
+   ```
+2. Copiar la clave privada (`~/.tauri/simplepodcast-studio.key`) y guardarla como secret en GitHub:
+   - Repo → Settings → Secrets and variables → Actions → New repository secret
+   - Name: `TAURI_SIGNING_PRIVATE_KEY`
+   - Value: contenido del archivo `.key`
+3. El workflow `.github/workflows/release.yml` usa `tauri-apps/tauri-action@v0` para:
+   - Buildar binarios para macOS (aarch64 + x86_64), Windows (x64) y Linux (x64).
+   - Firmarlos con la clave privada.
+   - Crear un GitHub Release draft con los binarios y `latest.json`.
+   - El updater endpoint apunta a `https://github.com/miguelalanis/simplepodcast-studio/releases/latest/download/latest.json`.
+
+### Crear un release
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+GitHub Actions buildea, firma, y publica el release. Los usuarios con la app instalada reciben el update automáticamente.
+
 ## Estructura
 
 ```
 src/                 # Frontend Svelte 5
 ├── App.svelte
 ├── main.ts
-├── app.css
+├── app.css          # shadcn CSS variables + tema
 ├── lib/
-│   ├── i18n/        # svelte-i18n
-│   ├── components/   # layout/, ui/, common/
-│   └── utils/
-└── routes/           # páginas SPA (svelte-spa-router)
+│   ├── i18n/        # wrapper minimalista de i18n
+│   ├── stores/      # router, settings, types
+│   ├── components/  # ui/ (shadcn), layout/ (header/sidebar), common/
+│   └── utils/       # cn() helper
+└── routes/          # Router hash-based (Dashboard, Editor, Settings, NotFound)
 
 src-tauri/           # Backend Rust
 ├── src/
 │   ├── main.rs
-│   ├── lib.rs
-│   ├── config.rs     # AppConfig (zod-mirror)
-│   ├── error.rs      # AppError
-│   └── commands/     # Tauri commands
-└── capabilities/      # ACL Tauri 2
+│   ├── lib.rs       # Builder + plugins + commands
+│   ├── config.rs    # AppConfig (zod-mirror)
+│   ├── error.rs     # AppError con user_message() en español
+│   └── commands/    # Tauri commands (settings, open_url, etc.)
+└── capabilities/    # ACL Tauri 2 (default, fs, shell, net, store, dialog)
 ```
 
 ## Licencia
