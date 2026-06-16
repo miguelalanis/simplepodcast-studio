@@ -1,0 +1,99 @@
+{
+  "common": {
+    "ok": "Listo",
+    "cancel": "Cancelar",
+    "retry": "Reintentar",
+    "save": "Guardar",
+    "publish": "Publicar",
+    "discard": "Descartar",
+    "delete": "Borrar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "success": "Listo"
+  },
+  "nav": {
+    "dashboard": "Inicio",
+    "episodes": "Episodios",
+    "settings": "Ajustes",
+    "new_episode": "Nuevo episodio"
+  },
+  "onboarding": {
+    "welcome": "Vamos a crear tu podcast. Esto toma unos minutos.",
+    "choose_folder": "Elegí una carpeta para guardar tu podcast. (Por defecto: ~/SimplePodcast)",
+    "cloning": "Clonando la plantilla... (puede tardar unos segundos)",
+    "ready": "Tu podcast está listo para editar."
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "no_episodes": "Todavía no publicaste episodios. Empezá con {action}",
+    "no_episodes_action": "Nuevo episodio",
+    "pending_changes": "Tenés cambios sin publicar. {action} {discard}",
+    "unpublished": "Episodio en borrador",
+    "scheduled": "Programado",
+    "published": "Publicado"
+  },
+  "editor": {
+    "draft_saved": "Borrador guardado.",
+    "audio_uploaded": "Audio subido. {size} · {duration}.",
+    "cover_uploaded": "Cubierta subida.",
+    "preview": "Vista previa",
+    "fields": {
+      "title": "Título",
+      "slug": "Slug",
+      "pub_date": "Fecha de publicación",
+      "status": "Estado",
+      "explicit": "Explícito",
+      "short_description": "Descripción corta",
+      "image": "Cubierta",
+      "audio": "Audio"
+    }
+  },
+  "upload": {
+    "title": "Subir audio",
+    "drop_or_pick": "Arrastrá un MP3, M4A, WAV, OGG o FLAC",
+    "or_pick": "o [Elegir archivo]",
+    "or_paste_url": "O pegá una URL",
+    "recent": "Audios recientes (de R2)",
+    "use_this": "Usar este",
+    "mode_local": "Local",
+    "mode_r2": "Subir a R2",
+    "mode_url": "URL pegada"
+  },
+  "preview": {
+    "starting": "El servidor de desarrollo se está iniciando...",
+    "ready": "Tu sitio se está previsualizando en tu navegador.",
+    "error": "No pudimos iniciar el servidor. ¿Tenés Node.js instalado?"
+  },
+  "publish": {
+    "committing": "Guardando... 1/3",
+    "pushing": "Subiendo a GitHub... 2/3",
+    "building": "Construyendo sitio... 3/3",
+    "success": "Tu episodio está en línea en {url}",
+    "error": "No pudimos publicar. Revisá la conexión o {help}.",
+    "help": "pedí ayuda"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "preferences": "Preferencias",
+    "github": "GitHub",
+    "cloudflare": "Cloudflare",
+    "r2": "R2",
+    "about": "Acerca de",
+    "version": "Versión",
+    "docs": "Documentación",
+    "connect": "Conectar",
+    "disconnect": "Desconectar",
+    "connected_as": "Conectado como {username}",
+    "not_connected": "No conectado"
+  },
+  "errors": {
+    "network": "No pudimos conectar. Revisá tu conexión a internet.",
+    "token_invalid": "Este token no funciona. Verificá que tenga los permisos correctos.",
+    "bucket_inaccessible": "No pudimos acceder al bucket. Verificá las credenciales.",
+    "rate_limited": "Demasiadas solicitudes. Esperá unos minutos.",
+    "report": "Reportar"
+  }
+}

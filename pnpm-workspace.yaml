@@ -1,0 +1,11 @@
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - '@tailwindcss/oxide'
+minimumReleaseAgeExclude:
+  - simpleplayer-svelte@1.1.0
+  - simpleplayer-svelte@1.1.1
+allowBuilds:
+  es5-ext: true
+  esbuild: true
+  svelte-preprocess: true

@@ -1,0 +1,39 @@
+Business Source License 1.1
+
+Licensor:  Miguel Alanís
+Licensed Work:  simplepodcast-studio v0.1.0
+Change Date:  2030-06-15
+Change License:  Apache License 2.0
+
+For information about the Business Source License, please visit
+https://mariadb.com/bsl11/
+
+For information about the Apache License 2.0, please visit
+https://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+Business Source License 1.1 (BSL 1.1)
+
+Licensor:  Miguel Alanís
+
+Licensed Work:  simplepodcast-studio
+
+Change Date:  2030-06-15
+Change License:  Apache License 2.0
+
+Additional Use Grant:
+  You may use the Licensed Work for any purpose, including
+  commercial purposes, except for providing a competing product
+  that is substantially similar in functionality to the Licensed Work.
+
+  For clarity: "competing product" does not include:
+  - Tools that use the Licensed Work to manage their own podcast content.
+  - Integrations that extend the Licensed Work's capabilities.
+  - Tools that are primarily distributed as plugins or extensions to other
+    products and that do not primarily replace the Licensed Work.
+
+Notice:  The Business Source License (this document, or the
+"License") is the license that governs the Licensed Work.
+
+For full terms see: https://mariadb.com/bsl11/
