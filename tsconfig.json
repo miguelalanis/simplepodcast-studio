@@ -17,7 +17,11 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "verbatimModuleSyntax": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "$lib/*": ["src/lib/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.svelte"]
 }
