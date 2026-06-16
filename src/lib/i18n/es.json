@@ -86,6 +86,7 @@
     "docs": "Documentación",
     "connect": "Conectar",
     "disconnect": "Desconectar",
+    "clear_credentials": "Borrar credenciales",
     "connected_as": "Conectado como {username}",
     "not_connected": "No conectado"
   },

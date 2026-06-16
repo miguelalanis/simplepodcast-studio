@@ -6,6 +6,9 @@ use tauri::Manager;
 use tracing_subscriber::EnvFilter;
 
 use crate::commands::open_url::open_url;
+use crate::commands::settings::{
+    settings_clear_credentials, settings_get, settings_path, settings_set,
+};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -31,6 +34,10 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             open_url,
+            settings_get,
+            settings_set,
+            settings_clear_credentials,
+            settings_path,
         ])
         .run(tauri::generate_context!())
         .expect("error al iniciar Simple Podcast Studio");

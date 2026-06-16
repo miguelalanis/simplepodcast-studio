@@ -22,14 +22,13 @@
   import type { HTMLInputAttributes } from 'svelte/elements';
   import { cn } from '$lib/utils';
 
-  type Props = HTMLInputAttributes & {
+  type Props = Omit<HTMLInputAttributes, 'value'> & {
     class?: string;
     size?: InputSize;
     value?: string | number;
   };
 
-  let { class: className, size, ...rest }: Props = $props();
-  let value: string | number = $state((rest.value as string | number) ?? '');
+  let { class: className, size, value = $bindable(''), ...rest }: Props = $props();
   const inputClass = $derived(cn(inputVariants({ size: size ?? 'default' }), className));
 </script>
 
