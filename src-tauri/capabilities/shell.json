@@ -1,0 +1,20 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "shell",
+  "description": "Ejecutar `pnpm` como sidecar para dev server y build.",
+  "windows": ["main"],
+  "permissions": [
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        { "name": "pnpm", "args": true, "sidecar": false }
+      ]
+    },
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        { "name": "pnpm", "args": true, "sidecar": false }
+      ]
+    }
+  ]
+}

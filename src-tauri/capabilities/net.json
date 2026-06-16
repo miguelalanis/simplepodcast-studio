@@ -1,0 +1,20 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "net",
+  "description": "HTTP a APIs externas (GitHub, Cloudflare, R2). Preparación para Nivel 1+.",
+  "windows": ["main"],
+  "permissions": [
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://api.github.com/**" },
+        { "url": "https://github.com/**" },
+        { "url": "https://api.cloudflare.com/**" },
+        { "url": "https://*.r2.cloudflarestorage.com/**" },
+        { "url": "https://*.r2.dev/**" },
+        { "url": "https://*.public.dev/**" },
+        { "url": "https://op3.dev/**" }
+      ]
+    }
+  ]
+}
